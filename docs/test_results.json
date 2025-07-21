@@ -1,0 +1,602 @@
+{
+  "graph_stats": {
+    "num_nodes": 4,
+    "num_edges": 5,
+    "average_degree": 2.5,
+    "density": 0.8333333333333334,
+    "weights_count": 10
+  },
+  "initial_thetas": [
+    [
+      0.11417195349493692,
+      0.2588777288831843,
+      0.29925780475182706,
+      0.17958527681506897,
+      0.5137071426339991
+    ],
+    [
+      0.9886301638547478,
+      0.28236327678759343,
+      0.05401113712102312,
+      0.8771493387915319,
+      0.5710791978907115
+    ],
+    [
+      0.5490291971041166,
+      0.2700053679508937,
+      0.2724856814731793,
+      0.7022476850841368,
+      0.9959045809006057
+    ],
+    [
+      0.7835554694832187,
+      0.8335797595360287,
+      0.29666790985616487,
+      0.8476081053561177,
+      0.5594665676218225
+    ]
+  ],
+  "executor_count": 6,
+  "tasks_generated": 8,
+  "lvp_results": {
+    "u_values": [
+      -0.13333333333333336,
+      0.04500000000000001,
+      -0.053333333333333344,
+      0.07500000000000001
+    ],
+    "selected_broker": "0",
+    "broker_loads": [
+      1,
+      3,
+      2,
+      4
+    ]
+  },
+  "predictions": [
+    {
+      "task_id": 0,
+      "p_hat": 0.4398516393017823,
+      "w_hat": 4.434570640619197,
+      "D_i": 5.824801592064968,
+      "r_i": 0.7461972758807467,
+      "x_i_theta": 0.6440336755650236
+    },
+    {
+      "task_id": 1,
+      "p_hat": 0.21956164112886434,
+      "w_hat": 3.8973327190448614,
+      "D_i": 4.685124345917373,
+      "r_i": 0.4139807295575594,
+      "x_i_theta": 0.3738108973149523
+    },
+    {
+      "task_id": 2,
+      "p_hat": 0.5526483765341077,
+      "w_hat": 5.3365248908650225,
+      "D_i": 6.378829729132094,
+      "r_i": 0.2482731320719026,
+      "x_i_theta": 0.7940317061951683
+    },
+    {
+      "task_id": 3,
+      "p_hat": 0.46621593060076,
+      "w_hat": 3.9721435496335302,
+      "D_i": 4.963191241403511,
+      "r_i": 0.4486905093836383,
+      "x_i_theta": 0.5423571823863429
+    },
+    {
+      "task_id": 4,
+      "p_hat": 0.44642902166735654,
+      "w_hat": 3.0573918265198268,
+      "D_i": 4.344053940476891,
+      "r_i": 0.9563012701548897,
+      "x_i_theta": 0.3303608438021742
+    },
+    {
+      "task_id": 5,
+      "p_hat": 0.6719845013417172,
+      "w_hat": 6.445731862485779,
+      "D_i": 7.949248865709132,
+      "r_i": 0.5010906962251472,
+      "x_i_theta": 1.0024263069982058
+    },
+    {
+      "task_id": 6,
+      "p_hat": 0.46361863979863616,
+      "w_hat": 6.12693514963415,
+      "D_i": 7.163932344262324,
+      "r_i": 0.17519236092793544,
+      "x_i_theta": 0.8618048337002387
+    },
+    {
+      "task_id": 7,
+      "p_hat": 0.5536471741824155,
+      "w_hat": 4.0271081055586455,
+      "D_i": 4.873376679517237,
+      "r_i": 0.3365365767136759,
+      "x_i_theta": 0.5097319972449156
+    }
+  ],
+  "clustering": [
+    {
+      "task_id": "task_0",
+      "relevance_scores": [
+        0.49199999999999994,
+        0.49199999999999994,
+        0.49199999999999994,
+        0.49199999999999994,
+        0.49199999999999994,
+        0.49199999999999994
+      ],
+      "availability_scores": [
+        0.9666666666666667,
+        0.9666666666666667,
+        0.9666666666666667,
+        0.9666666666666667,
+        0.9666666666666667,
+        0.9666666666666667
+      ],
+      "mean_relevance": 0.49199999999999994,
+      "suitable_executors": []
+    },
+    {
+      "task_id": "task_1",
+      "relevance_scores": [
+        0.728,
+        0.728,
+        0.728,
+        0.728,
+        0.728,
+        0.728
+      ],
+      "availability_scores": [
+        0.9416666666666667,
+        0.9416666666666667,
+        0.9416666666666667,
+        0.9416666666666667,
+        0.9416666666666667,
+        0.9416666666666667
+      ],
+      "mean_relevance": 0.7279999999999999,
+      "suitable_executors": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "task_id": "task_2",
+      "relevance_scores": [
+        0.574,
+        0.574,
+        0.574,
+        0.574,
+        0.574,
+        0.574
+      ],
+      "availability_scores": [
+        0.9666666666666667,
+        0.9666666666666667,
+        0.9666666666666667,
+        0.9666666666666667,
+        0.9666666666666667,
+        0.9666666666666667
+      ],
+      "mean_relevance": 0.574,
+      "suitable_executors": []
+    }
+  ],
+  "processing": [
+    {
+      "task_id": "task_0",
+      "batch_id": 0,
+      "batch_position": 0,
+      "batch_size": 1,
+      "broker_id": 0,
+      "executor_id": 4,
+      "execution_result": {
+        "task_id": "task_0",
+        "executor_id": 4,
+        "start_time": "2025-07-20 13:26:36.372337",
+        "end_time": "2025-07-20 13:26:36.400668",
+        "duration": 2.8057490967353718,
+        "tokens": 190,
+        "cost": 0.19,
+        "status": "success",
+        "result": "Mock execution of task task_0 completed",
+        "timeout_risk": 0.1
+      },
+      "broker_result": {
+        "selected_executor": 4,
+        "load_prediction": 0.44623033101496457,
+        "wait_prediction": 5.059447566662269,
+        "cost": 6.567432397962846,
+        "success": true
+      },
+      "batch_processing_time": 0.030460834503173828,
+      "avg_task_time": 0.030460834503173828
+    },
+    {
+      "task_id": "task_1",
+      "batch_id": 1,
+      "batch_position": 0,
+      "batch_size": 2,
+      "broker_id": 1,
+      "executor_id": 1,
+      "execution_result": {
+        "task_id": "task_1",
+        "executor_id": 1,
+        "start_time": "2025-07-20 13:26:36.402183",
+        "end_time": "2025-07-20 13:26:36.443222",
+        "duration": 3.9767797530808258,
+        "tokens": 271,
+        "cost": 0.271,
+        "status": "success",
+        "result": "Mock execution of task task_1 completed",
+        "timeout_risk": 0.1
+      },
+      "broker_result": {
+        "selected_executor": 1,
+        "load_prediction": 0.39591910824237797,
+        "wait_prediction": 3.5268644805131992,
+        "cost": 5.307020966667114,
+        "success": true
+      },
+      "batch_processing_time": 0.06785035133361816,
+      "avg_task_time": 0.03392517566680908
+    },
+    {
+      "task_id": "task_2",
+      "batch_id": 1,
+      "batch_position": 1,
+      "batch_size": 2,
+      "broker_id": 1,
+      "executor_id": 3,
+      "execution_result": {
+        "task_id": "task_2",
+        "executor_id": 3,
+        "start_time": "2025-07-20 13:26:36.444749",
+        "end_time": "2025-07-20 13:26:36.469027",
+        "duration": 2.3830106050840945,
+        "tokens": 222,
+        "cost": 0.222,
+        "status": "success",
+        "result": "Mock execution of task task_2 completed",
+        "timeout_risk": 0.1
+      },
+      "broker_result": {
+        "selected_executor": 3,
+        "load_prediction": 0.5451530730313112,
+        "wait_prediction": 5.279509464796203,
+        "cost": 6.794181104642485,
+        "success": true
+      },
+      "batch_processing_time": 0.06785035133361816,
+      "avg_task_time": 0.03392517566680908
+    },
+    {
+      "task_id": "task_3",
+      "batch_id": 2,
+      "batch_position": 0,
+      "batch_size": 3,
+      "broker_id": 2,
+      "executor_id": 1,
+      "execution_result": {
+        "task_id": "task_3",
+        "executor_id": 1,
+        "start_time": "2025-07-20 13:26:36.471040",
+        "end_time": "2025-07-20 13:26:36.514658",
+        "duration": 4.2672972146349135,
+        "tokens": 274,
+        "cost": 0.274,
+        "status": "success",
+        "result": "Mock execution of task task_3 completed",
+        "timeout_risk": 0.1
+      },
+      "broker_result": {
+        "selected_executor": 1,
+        "load_prediction": 0.37474707054500184,
+        "wait_prediction": 4.283137196615857,
+        "cost": 5.743563061538136,
+        "success": true
+      },
+      "batch_processing_time": 0.10930013656616211,
+      "avg_task_time": 0.03643337885538737
+    },
+    {
+      "task_id": "task_4",
+      "batch_id": 2,
+      "batch_position": 1,
+      "batch_size": 3,
+      "broker_id": 2,
+      "executor_id": 2,
+      "execution_result": {
+        "task_id": "task_4",
+        "executor_id": 2,
+        "start_time": "2025-07-20 13:26:36.515166",
+        "end_time": "2025-07-20 13:26:36.540056",
+        "duration": 2.424276870895879,
+        "tokens": 217,
+        "cost": 0.217,
+        "status": "success",
+        "result": "Mock execution of task task_4 completed",
+        "timeout_risk": 0.1
+      },
+      "broker_result": {
+        "selected_executor": 2,
+        "load_prediction": 0.39130712847478377,
+        "wait_prediction": 3.1775278751552163,
+        "cost": 4.434754288198574,
+        "success": true
+      },
+      "batch_processing_time": 0.10930013656616211,
+      "avg_task_time": 0.03643337885538737
+    },
+    {
+      "task_id": "task_5",
+      "batch_id": 2,
+      "batch_position": 2,
+      "batch_size": 3,
+      "broker_id": 2,
+      "executor_id": 3,
+      "execution_result": {
+        "task_id": "task_5",
+        "executor_id": 3,
+        "start_time": "2025-07-20 13:26:36.540570",
+        "end_time": "2025-07-20 13:26:36.576809",
+        "duration": 3.494683115216758,
+        "tokens": 268,
+        "cost": 0.268,
+        "status": "success",
+        "result": "Mock execution of task task_5 completed",
+        "timeout_risk": 0.1
+      },
+      "broker_result": {
+        "selected_executor": 3,
+        "load_prediction": 0.7181079843024956,
+        "wait_prediction": 6.922273341435709,
+        "cost": 8.875064551687103,
+        "success": true
+      },
+      "batch_processing_time": 0.10930013656616211,
+      "avg_task_time": 0.03643337885538737
+    },
+    {
+      "task_id": "task_6",
+      "batch_id": 3,
+      "batch_position": 0,
+      "batch_size": 2,
+      "broker_id": 3,
+      "executor_id": 2,
+      "execution_result": {
+        "task_id": "task_6",
+        "executor_id": 2,
+        "start_time": "2025-07-20 13:26:36.580336",
+        "end_time": "2025-07-20 13:26:36.620851",
+        "duration": 3.9666773795055157,
+        "tokens": 306,
+        "cost": 0.306,
+        "status": "success",
+        "result": "Mock execution of task task_6 completed",
+        "timeout_risk": 0.1
+      },
+      "broker_result": {
+        "selected_executor": 2,
+        "load_prediction": 0.5226839635227009,
+        "wait_prediction": 5.710681443166331,
+        "cost": 8.76559824789153,
+        "success": true
+      },
+      "batch_processing_time": 0.07760763168334961,
+      "avg_task_time": 0.038803815841674805
+    },
+    {
+      "task_id": "task_7",
+      "batch_id": 3,
+      "batch_position": 1,
+      "batch_size": 2,
+      "broker_id": 3,
+      "executor_id": 2,
+      "execution_result": {
+        "task_id": "task_7",
+        "executor_id": 2,
+        "start_time": "2025-07-20 13:26:36.620851",
+        "end_time": "2025-07-20 13:26:36.655427",
+        "duration": 3.3801784584008434,
+        "tokens": 301,
+        "cost": 0.301,
+        "status": "success",
+        "result": "Mock execution of task task_7 completed",
+        "timeout_risk": 0.1
+      },
+      "broker_result": {
+        "selected_executor": 2,
+        "load_prediction": 0.5655181947897487,
+        "wait_prediction": 4.465344004918567,
+        "cost": 6.447828914898381,
+        "success": true
+      },
+      "batch_processing_time": 0.07760763168334961,
+      "avg_task_time": 0.038803815841674805
+    }
+  ],
+  "batch_stats": {
+    "total_batches": 4,
+    "avg_batch_size": 2.25,
+    "total_processing_time": 0.2852189540863037,
+    "avg_time_per_task": 0.035652369260787964
+  },
+  "spsa_optimization": [
+    {
+      "broker_id": 0,
+      "old_theta": [
+        0.11417195349493692,
+        0.2588777288831843,
+        0.29925780475182706,
+        0.17958527681506897,
+        0.5137071426339991
+      ],
+      "new_theta": [
+        -2.924108439738237,
+        3.2971581221163584,
+        -2.7390225884813466,
+        3.217865670048243,
+        -2.524573250599175
+      ],
+      "optimization_result": {
+        "loss": 1092.1080868231375,
+        "theta_change": 6.793801493974168,
+        "grad_norm": 679.380149397417,
+        "f_plus": 530.9965115661155,
+        "f_minus": 470.230903701452
+      }
+    },
+    {
+      "broker_id": 1,
+      "old_theta": [
+        0.9886301638547478,
+        0.28236327678759343,
+        0.05401113712102312,
+        0.8771493387915319,
+        0.5710791978907115
+      ],
+      "new_theta": [
+        -6.00574881877751,
+        7.276742259419851,
+        -6.940367845511235,
+        -6.1172296438407265,
+        7.56545818052297
+      ],
+      "optimization_result": {
+        "loss": 6337.988200317263,
+        "theta_change": 15.63990686556155,
+        "grad_norm": 1563.9906865561552,
+        "f_plus": 1318.7139135024609,
+        "f_minus": 1178.8263338498157
+      }
+    },
+    {
+      "broker_id": 2,
+      "old_theta": [
+        0.5490291971041166,
+        0.2700053679508937,
+        0.2724856814731793,
+        0.7022476850841368,
+        0.9959045809006057
+      ],
+      "new_theta": [
+        -5.065315214521828,
+        -5.344339043675051,
+        5.886830093099125,
+        6.316592096710082,
+        -4.61843983072534
+      ],
+      "optimization_result": {
+        "loss": 6664.616007183039,
+        "theta_change": 12.554055753491673,
+        "grad_norm": 1255.4055753491673,
+        "f_plus": 702.4804573226311,
+        "f_minus": 814.76734555515
+      }
+    },
+    {
+      "broker_id": 3,
+      "old_theta": [
+        0.7835554694832187,
+        0.8335797595360287,
+        0.29666790985616487,
+        0.8476081053561177,
+        0.5594665676218225
+      ],
+      "new_theta": [
+        8.264590225893773,
+        -6.647454996874525,
+        -7.184366846554389,
+        -6.633426651054436,
+        8.040501324032377
+      ],
+      "optimization_result": {
+        "loss": 3633.490458175868,
+        "theta_change": 16.72810225737258,
+        "grad_norm": 1672.8102257372582,
+        "f_plus": 2627.7455958156056,
+        "f_minus": 2478.1249006873945
+      }
+    }
+  ],
+  "consensus": {
+    "pre_consensus": [
+      [
+        -2.924108439738237,
+        3.2971581221163584,
+        -2.7390225884813466,
+        3.217865670048243,
+        -2.524573250599175
+      ],
+      [
+        -6.00574881877751,
+        7.276742259419851,
+        -6.940367845511235,
+        -6.1172296438407265,
+        7.56545818052297
+      ],
+      [
+        -5.065315214521828,
+        -5.344339043675051,
+        5.886830093099125,
+        6.316592096710082,
+        -4.61843983072534
+      ],
+      [
+        8.264590225893773,
+        -6.647454996874525,
+        -7.184366846554389,
+        -6.633426651054436,
+        8.040501324032377
+      ]
+    ],
+    "post_consensus": [
+      [
+        -2.8735266852773855,
+        3.191827909157583,
+        -2.7506904200583002,
+        3.085032745146055,
+        -2.37329151308732
+      ],
+      [
+        -5.973167572875464,
+        7.143094294192994,
+        -6.804232842598729,
+        -5.944140970804426,
+        7.3884769988841015
+      ],
+      [
+        -4.951326866337036,
+        -5.197956724912151,
+        5.623148544008598,
+        6.093362353177422,
+        -4.406145311399483
+      ],
+      [
+        8.069757953866558,
+        -6.557144747450569,
+        -7.0464373120179165,
+        -6.453864663850977,
+        7.857617808251964
+      ]
+    ],
+    "changes": [
+      0.23306620514923027,
+      0.3142261647278192,
+      0.4459255178082255,
+      0.361702916029732
+    ],
+    "avg_distance": 19.552314783405986,
+    "convergence": "False"
+  }
+}
