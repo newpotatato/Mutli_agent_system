@@ -185,6 +185,14 @@ class MockLLMExecutor(Executor):
         end_time = datetime.now()
         self.current_load -= 1
         
+        # Убеждаемся, что все строки в результате корректно кодированы
+        task_text = task.get('text', task.get('id', 'unknown'))
+        if isinstance(task_text, str):
+            # Убираем потенциально проблемные символы
+            safe_task_text = task_text.encode('utf-8', errors='replace').decode('utf-8')
+        else:
+            safe_task_text = str(task.get('id', 'unknown'))
+        
         return {
             'task_id': task['id'],
             'executor_id': self.id,
@@ -194,6 +202,6 @@ class MockLLMExecutor(Executor):
             'tokens': tokens,
             'cost': tokens * self.cost_per_token,
             'status': 'success',
-            'result': f"Mock execution of task {task['id']} completed",
+            'result': f"Задача '{safe_task_text[:50]}...' выполнена исполнителем {self.id}",
             'timeout_risk': self._calculate_timeout_risk(execution_time)
         }

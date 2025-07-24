@@ -143,9 +143,9 @@ class Broker:
         h_T = 0.1  # Коэффициент нормализации
         epsilon = 1e-6
         
-        for prompt, p_hat, D in self.history[-10:]:
+        for prompt, p_hat, D, p_real in self.history[-10:]:
             x_i_theta = sum(x * t for x, t in zip(prompt['features'], theta))
-            p_real = prompt.get('actual_load', p_hat)  # Используем p_hat как приближение если нет реальных данных
+            # p_real = prompt.get('actual_load', p_hat)  # Используем p_hat как приближение если нет реальных данных
             
             # Вычисляем нормализованную ошибку
             predicted = p_hat + x_i_theta
@@ -166,7 +166,7 @@ class Broker:
         losses = []
         s_max = 1.0  # Максимальный успех
         
-        for prompt, _, D in self.history[-10:]:
+        for prompt, _, D, _ in self.history[-10:]:
             x_i_theta = sum(x * t for x, t in zip(prompt['features'], theta))
             w_hat = predict_waiting_time(prompt)
             w_real = prompt.get('actual_wait', w_hat)  # Приближение

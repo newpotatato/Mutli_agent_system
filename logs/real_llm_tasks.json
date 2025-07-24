@@ -1,0 +1,183 @@
+{
+  "session_id": "20250724_124550",
+  "session_start": "2025-07-24T12:45:50.122184",
+  "tasks": [
+    {
+      "timestamp": "2025-07-24T12:46:07.048890",
+      "task_id": "task_0",
+      "task_text": "Решить квадратное уравнение x^2 + 5x + 6 = 0 и объяснить каждый шаг",
+      "task_type": "math",
+      "task_priority": 6,
+      "task_complexity": 5,
+      "broker_id": null,
+      "executor_id": "real_executor_0",
+      "model_response": "Это ответ на ваш запрос: 'Решить квадратное уравнение x^2 + 5x + 6 = 0 и объ...'",
+      "execution_metrics": {
+        "duration": 1.342315,
+        "tokens": 20,
+        "cost": 0.02,
+        "status": "success",
+        "timeout_risk": 0.1
+      },
+      "batch_info": {
+        "task_index": 0,
+        "total_tasks": 8
+      }
+    },
+    {
+      "timestamp": "2025-07-24T12:46:07.775619",
+      "task_id": "task_1",
+      "task_text": "Написать функцию сортировки на Python с комментариями",
+      "task_type": "text",
+      "task_priority": 8,
+      "task_complexity": 5,
+      "broker_id": null,
+      "executor_id": "real_executor_1",
+      "model_response": "Вот пример функции сортировки с комментариями на Python:\n```\ndef sort_list(lst):\n    \"\"\"\n    Сортирует список элементов в порядке возрастания.\n\n    Args:\n        lst (list): Список элементов для сортировки.\n\n    Returns:\n        list: Сортированный список элементов.\n    \"\"\"\n    # Создаем копию списка, чтобы не изменять оригинальный список\n    sorted_lst = lst.copy()\n\n    # Используем алгоритм сортировки пузырьком\n    for i in range(len(sorted_lst)):\n        # Перебираем каждый элемент в списке\n        for j in range(len(sorted_lst) - 1):\n            # Если текущий элемент больше следующего, меняем их местами\n            if sorted_lst[j] > sorted_lst[j + 1]:\n                sorted_lst[j], sorted_lst[j + 1] = sorted_lst[j + 1], sorted_lst[j]\n\n    return sorted_lst\n```\nВ этом примере мы реализуем алгоритм сортировки пузырьком, который является простым и эффективным способом сортировки списка элементов. Функция принимает список элементов в качестве аргумента и возвращает отсортированный список.\n\nКомментарии объясняют, что происходит в каждом шаге функции:\n\n* Создаем копию списка, чтобы не изменять оригина",
+      "execution_metrics": {
+        "duration": 0.696637,
+        "tokens": 279,
+        "cost": 0.279,
+        "status": "success",
+        "timeout_risk": 0.1
+      },
+      "batch_info": {
+        "task_index": 1,
+        "total_tasks": 8
+      }
+    },
+    {
+      "timestamp": "2025-07-24T12:46:08.841405",
+      "task_id": "task_2",
+      "task_text": "Проанализировать данные продаж за квартал и дать рекомендации",
+      "task_type": "analysis",
+      "task_priority": 8,
+      "task_complexity": 7,
+      "broker_id": null,
+      "executor_id": "real_executor_2",
+      "model_response": "Я понимаю ваш запрос и готов помочь с решением.",
+      "execution_metrics": {
+        "duration": 1.047688,
+        "tokens": 11,
+        "cost": 0.011,
+        "status": "success",
+        "timeout_risk": 0.1
+      },
+      "batch_info": {
+        "task_index": 2,
+        "total_tasks": 8
+      }
+    },
+    {
+      "timestamp": "2025-07-24T12:46:09.566725",
+      "task_id": "task_3",
+      "task_text": "Создать дизайн логотипа для стартапа в сфере ИИ",
+      "task_type": "creative",
+      "task_priority": 8,
+      "task_complexity": 5,
+      "broker_id": null,
+      "executor_id": "real_executor_0",
+      "model_response": "What an exciting task! Creating a logo design for a startup in the AI sphere requires a deep understanding of the technology and its applications, as well as a creative approach to visually represent the brand's identity. Here's a potential logo design concept:\n\n**Logo Concept:**\n\nThe logo features a stylized combination of a human brain and a robotic arm, symbolizing the fusion of human intelligence and artificial intelligence. The brain represents the creative, intuitive aspects of human thought, while the robotic arm represents the precision, efficiency, and scalability of AI.\n\n**Logo Design:**\n\nThe logo consists of two main elements:\n\n1. **Brain Element:** A stylized, simplified representation of a human brain, created using geometric shapes and lines. The brain is divided into two hemispheres, with the left hemisphere featuring a subtle, gradient-effect \"shadow\" to represent the subconscious mind.\n2. **Robotic Arm Element:** A stylized, futuristic robotic arm, designed with clean lines and minimalistic shapes. The arm is depicted in a neutral, metallic color to convey a sense of technology and innovation.\n\n**Logo Variations:**\n\nTo ensure versatility and adaptability, I've created three logo variations:\n\n1. **Main Logo:** The primary logo features the brain and robotic arm elements combined, with the brain element slightly overlapping the robotic arm. This version is ideal for use on business cards, letterheads, and website headers.\n2. **Icon-Only Logo:** A standalone version of the brain and robotic arm",
+      "execution_metrics": {
+        "duration": 0.696381,
+        "tokens": 511,
+        "cost": 0.511,
+        "status": "success",
+        "timeout_risk": 0.1
+      },
+      "batch_info": {
+        "task_index": 3,
+        "total_tasks": 8
+      }
+    },
+    {
+      "timestamp": "2025-07-24T12:46:11.014327",
+      "task_id": "task_4",
+      "task_text": "Объяснить принцип работы нейронных сетей простыми словами",
+      "task_type": "explanation",
+      "task_priority": 6,
+      "task_complexity": 5,
+      "broker_id": null,
+      "executor_id": "real_executor_1",
+      "model_response": "На основе вашего запроса могу сказать следующее...",
+      "execution_metrics": {
+        "duration": 1.426241,
+        "tokens": 12,
+        "cost": 0.012,
+        "status": "success",
+        "timeout_risk": 0.1
+      },
+      "batch_info": {
+        "task_index": 4,
+        "total_tasks": 8
+      }
+    },
+    {
+      "timestamp": "2025-07-24T12:46:11.672517",
+      "task_id": "task_5",
+      "task_text": "Составить план маркетинговой кампании для нового продукта",
+      "task_type": "planning",
+      "task_priority": 6,
+      "task_complexity": 4,
+      "broker_id": null,
+      "executor_id": "real_executor_2",
+      "model_response": "План маркетинговой кампании для нового продукта:\n\n**Цель:** запустить новый продукт на рынок, увеличить его популярность и продажи, а также создать положительный имидж бренда.\n\n**Основные задачи:**\n\n1. Создать интерес к новому продукту у целевой аудитории.\n2. Увеличить количество продаж и доход от продаж.\n3. Создать положительный имидж бренда и его новинки.\n\n**Целевая аудитория:**\n\n* Демография: возраст 25-45 лет, пол - мужчины и женщины, социальный статус - средний и выше.\n* Интересы: технологии, инновации, качество и функциональность.\n* Behavior: готовы покупать новые продукты и услуги, интересуются новинками и инновациями.\n\n**Маркетинговые стратегии:**\n\n1. **Онтлайн-кампания:**\n\t* Создание официального сайта продукта с подробной информацией и фото.\n\t* Создание страницы продукта в социальных сетях (Facebook, Instagram, Twitter).\n\t* Запуск рекламы на Google AdWords и социальных сетях.\n\t* Создание электронной почты для подписки на новости и обновления.\n2. **Оффлайн-кам",
+      "execution_metrics": {
+        "duration": 0.629391,
+        "tokens": 245,
+        "cost": 0.245,
+        "status": "success",
+        "timeout_risk": 0.1
+      },
+      "batch_info": {
+        "task_index": 5,
+        "total_tasks": 8
+      }
+    },
+    {
+      "timestamp": "2025-07-24T12:46:13.725542",
+      "task_id": "task_6",
+      "task_text": "Найти 3 основных тренда в области искусственного интеллекта",
+      "task_type": "math",
+      "task_priority": 8,
+      "task_complexity": 7,
+      "broker_id": null,
+      "executor_id": "real_executor_0",
+      "model_response": "Интересный вопрос! Относительно 'Найти 3 основных тренда в обла...'",
+      "execution_metrics": {
+        "duration": 2.032772,
+        "tokens": 16,
+        "cost": 0.016,
+        "status": "success",
+        "timeout_risk": 0.1
+      },
+      "batch_info": {
+        "task_index": 6,
+        "total_tasks": 8
+      }
+    },
+    {
+      "timestamp": "2025-07-24T12:46:14.543972",
+      "task_id": "task_7",
+      "task_text": "Оптимизировать производительность веб-приложения Python",
+      "task_type": "optimization",
+      "task_priority": 5,
+      "task_complexity": 7,
+      "broker_id": null,
+      "executor_id": "real_executor_1",
+      "model_response": "Here are some ways to optimize the performance of a Python web application:\n\n1. **Use a WSGI server**: Instead of using the built-in `http.server` module, use a WSGI (Web Server Gateway Interface) server like `gunicorn` or `uwsgi`. These servers are designed to handle multiple requests concurrently and can handle large traffic loads.\n2. **Use a caching layer**: Implement a caching layer like Redis or Memcached to store frequently accessed data. This can reduce the number of database queries and improve response times.\n3. **Optimize database queries**: Use efficient database queries and indexing to reduce the time it takes to retrieve data from the database.\n4. **Use a connection pool**: Use a connection pool like `pgbouncer` or `mysql-connector-python` to manage database connections. This can reduce the overhead of creating new connections and improve performance.\n5. **Use a reverse proxy**: Use a reverse proxy like `nginx` or `Apache` to handle requests and offload tasks from your Python application. This can improve performance and reduce the load on your application.\n6. **Use a load balancer**: Use a load balancer like `HAProxy` or `Amazon Elastic Load Balancer` to distribute traffic across multiple instances of your application. This can improve availability and reduce the load on individual instances.\n7. **Optimize code**: Optimize your Python code by using efficient algorithms, minimizing database queries, and reducing the amount of data",
+      "execution_metrics": {
+        "duration": 0.796425,
+        "tokens": 489,
+        "cost": 0.489,
+        "status": "success",
+        "timeout_risk": 0.1
+      },
+      "batch_info": {
+        "task_index": 7,
+        "total_tasks": 8
+      }
+    }
+  ],
+  "last_updated": "2025-07-24T12:46:14.559192"
+}

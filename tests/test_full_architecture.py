@@ -8,6 +8,18 @@ import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+# Устанавливаем правильную кодировку для Windows
+if os.name == 'nt':
+    import locale
+    # Пытаемся установить UTF-8 кодировку
+    try:
+        locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
+    except locale.Error:
+        try:
+            locale.setlocale(locale.LC_ALL, 'Russian_Russia.UTF-8')
+        except locale.Error:
+            pass  # Оставляем системную кодировку
+
 import logging
 import numpy as np
 import matplotlib.pyplot as plt
@@ -23,6 +35,7 @@ from src.agents.executor import MockLLMExecutor
 from src.core.graph import GraphService
 from src.core.task import Task
 from src.models.models import predict_load, predict_waiting_time
+from src.core.task_response_logger import get_task_logger
 from configs.config import *
 
 # Настройка логирования с поддержкой Unicode
@@ -30,12 +43,36 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('pipeline_test.log', encoding='utf-8'),
-        logging.StreamHandler()
+        logging.FileHandler('pipeline_test.log', encoding='utf-8', mode='w'),
+        logging.StreamHandler(sys.stdout)
     ]
 )
 
+# Убеждаемся, что у нас правильная кодировка в консоли
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+if hasattr(sys.stderr, 'reconfigure'):
+    sys.stderr.reconfigure(encoding='utf-8')
+
 logger = logging.getLogger(__name__)
+
+def safe_encode_text(text, max_length=None):
+    """
+    Утилита для безопасного кодирования текста в UTF-8
+    """
+    if text is None:
+        return "None"
+    
+    if not isinstance(text, str):
+        text = str(text)
+    
+    # Преобразуем в UTF-8 с обработкой ошибок
+    safe_text = text.encode('utf-8', errors='replace').decode('utf-8')
+    
+    if max_length and len(safe_text) > max_length:
+        safe_text = safe_text[:max_length] + "..."
+    
+    return safe_text
 
 class FullArchitectureTest:
     """Полный тест архитектуры многоагентной системы"""
@@ -133,7 +170,7 @@ class FullArchitectureTest:
             }
             
             self.tasks.append(task_data)
-        logger.info(f"   [OK] Задача {i}: [{task.type.upper()}] {prompt[:40]}... (уверенность: {task.get_confidence_score():.2f})")
+        logger.info(f"   [OK] Задача {i}: [{task.type.upper()}] {safe_encode_text(prompt, 40)} (уверенность: {task.get_confidence_score():.2f})")
         
         self.test_results['tasks_generated'] = len(self.tasks)
         logger.info("   Этап 4 завершен: Задачи сгенерированы\n")
@@ -251,6 +288,9 @@ class FullArchitectureTest:
         """Этап 8: Обработка задач через систему (с пакетной обработкой)"""
         logger.info("[PROCESSING] ЭТАП 8: Обработка задач через систему (пакетная обработка)")
         
+        # Инициализируем логгер задач
+        task_logger = get_task_logger()
+        
         processing_results = []
         
         # Определяем размеры пакетов (варьируются для имитации разной нагрузки)
@@ -277,7 +317,7 @@ class FullArchitectureTest:
             
             logger.info(f"   [BATCH] Обработка пакета #{batch_index+1} ({len(task_batch)} задач) брокером {broker_id}")
             for task in task_batch:
-                logger.info(f"     - Задача {task['id']}: {task['text'][:40]}...")
+                logger.info(f"     - Задача {task['id']}: {safe_encode_text(task['text'], 40)}")
             
             # Брокер обрабатывает весь пакет задач
             broker_results = selected_broker.receive_prompt(task_batch, self.brokers)
@@ -292,6 +332,16 @@ class FullArchitectureTest:
                 
                 # Исполнитель выполняет задачу
                 execution_result = selected_executor.execute_task(task_data)
+                
+                # Логируем выполнение задачи с подробной информацией
+                task_logger.log_task_execution(
+                    task_data=task_data,
+                    executor=selected_executor,
+                    execution_result=execution_result,
+                    broker_id=broker_id,
+                    batch_id=batch_index,
+                    batch_position=i
+                )
                 
                 processing_results.append({
                     'task_id': task_data['id'],

@@ -1,0 +1,98 @@
+# 🔒 Конфиденциальные файлы с API ключами
+api_keys.json
+config.json
+secrets.json
+*.key
+*.token
+
+# 🗂️ Файлы окружения
+.env
+.env.local
+.env.production
+.env.test
+
+# 🐍 Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# 🔬 Тестирование
+.tox/
+.nox/
+.coverage
+.pytest_cache/
+.hypothesis/
+htmlcov/
+.coverage.*
+
+# 🧪 Jupyter Notebook
+.ipynb_checkpoints
+
+# 🔧 IDEs и редакторы
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 📊 Логи и базы данных
+*.log
+*.db
+*.sqlite3
+*.db-journal
+
+# 🖼️ Изображения и медиа (если большие)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+*.avi
+*.mkv
+
+# 📈 Результаты и кэш
+results/
+cache/
+temp/
+tmp/
+.cache/
+
+# 🏠 Системные файлы
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 🔄 Временные файлы генерации
+generated/
+output/
+exports/
+
+# 📦 Виртуальные окружения
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# ⚠️ ВАЖНО: api_keys.json содержит секретные токены!
+# Никогда не коммитьте этот файл в публичный репозиторий!

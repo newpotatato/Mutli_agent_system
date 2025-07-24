@@ -1,0 +1,65 @@
+{
+  "session_info": {
+    "session_id": "20250724_124550",
+    "session_start": "2025-07-24T12:45:50.122184",
+    "total_tasks": 8,
+    "successful_tasks": 8,
+    "success_rate": 1.0
+  },
+  "task_types_stats": {
+    "math": {
+      "count": 2,
+      "success": 2
+    },
+    "text": {
+      "count": 1,
+      "success": 1
+    },
+    "analysis": {
+      "count": 1,
+      "success": 1
+    },
+    "creative": {
+      "count": 1,
+      "success": 1
+    },
+    "explanation": {
+      "count": 1,
+      "success": 1
+    },
+    "planning": {
+      "count": 1,
+      "success": 1
+    },
+    "optimization": {
+      "count": 1,
+      "success": 1
+    }
+  },
+  "executor_stats": {
+    "real_executor_0": {
+      "tasks": 3,
+      "success": 3,
+      "total_time": 4.071467999999999,
+      "total_cost": 0.547
+    },
+    "real_executor_1": {
+      "tasks": 3,
+      "success": 3,
+      "total_time": 2.919303,
+      "total_cost": 0.78
+    },
+    "real_executor_2": {
+      "tasks": 2,
+      "success": 2,
+      "total_time": 1.677079,
+      "total_cost": 0.256
+    }
+  },
+  "performance": {
+    "average_duration": 1.08348125,
+    "total_cost": 1.5830000000000002,
+    "average_cost_per_task": 0.19787500000000002
+  },
+  "generated_at": "2025-07-24T12:46:14.591627"
+}

@@ -1,0 +1,25 @@
+{
+  "summary": {
+    "total_successful_tasks": 8,
+    "total_cost": 1.5830000000000002,
+    "total_tokens": 1583,
+    "average_duration": 1.08348125,
+    "active_agents": 3,
+    "task_types_covered": 7
+  },
+  "agents": [
+    "real_executor_0",
+    "real_executor_1",
+    "real_executor_2"
+  ],
+  "task_types": [
+    "analysis",
+    "creative",
+    "explanation",
+    "math",
+    "optimization",
+    "planning",
+    "text"
+  ],
+  "generated_at": "2025-07-24T12:47:05.188393"
+}
