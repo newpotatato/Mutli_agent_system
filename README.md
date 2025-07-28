@@ -26,11 +26,35 @@ mutli_agents_2/
 │   │   ├── comprehensive_visualization.py
 │   │   ├── real_llm_visualization.py
 │   │   └── enhanced_comparison_visualization.py
+│   ├── comparison/        # Алгоритмы сравнения
+│   │   └── comparison.py  # Сравнительный анализ алгоритмов
+│   ├── config/            # Конфигурация системы
+│   │   └── config.py      # Основные настройки
 │   └── utils/             # Утилиты
-│       ├── multi_agent_visualization.py
-│       └── multi_agent_visualization_eng.py
-├── configs/               # Конфигурационные файлы
-│   └── config.py         # Основная конфигурация
+│       └── multi_agent_visualization.py
+├── scripts/               # Скрипты анализа и утилиты
+│   ├── analysis/          # Скрипты анализа
+│   │   ├── analysis_summary.py
+│   │   ├── analyze_agents.py
+│   │   ├── analyze_enhanced_results.py
+│   │   ├── analyze_executors.py
+│   │   ├── add_actual_execution_times.py
+│   │   └── performance_data_updater.py
+│   ├── benchmarks/        # Бенчмарки производительности
+│   │   ├── model_benchmark_report.py
+│   │   ├── model_performance_evaluator.py
+│   │   └── updated_model_capabilities.py
+│   ├── visualization/     # Скрипты визуализации
+│   │   ├── create_real_data_visualization.py
+│   │   ├── create_synthetic_visualizations.py
+│   │   ├── multi_agent_visualization_eng_updated.py
+│   │   ├── run_spsa_visualization.py
+│   │   └── visualize_real_llm_data.py
+│   ├── check_config.py    # Проверка конфигурации
+│   ├── debug_executor_5.py
+│   └── fix_executor_5_data.py
+├── configs/               # Конфигурационные файлы (deprecated)
+│   └── config.py         # Перенесено в src/config/
 ├── tests/                 # Тестовые файлы
 │   ├── test_full_architecture.py
 │   ├── test_pipeline.py
@@ -42,12 +66,27 @@ mutli_agents_2/
 │   ├── demo_spsa_consensus.py
 │   ├── demo_spsa_consensus_eng.py
 │   └── detailed_scoring_demo.py
+├── data/                  # Данные и результаты
+│   ├── reports/           # Отчеты анализа
+│   └── results/           # Результаты экспериментов
+├── logs/                  # Логи выполнения
 ├── assets/               # Ресурсы
 │   └── images/          # Изображения и графики
-└── docs/                # Документация
-    ├── README.md        # Детальная документация
-    ├── requirements.txt # Зависимости
-    └── SYSTEM_DOCUMENTATION.md
+├── docs/                # Документация
+│   ├── README.md        # Детальная документация
+│   ├── requirements.txt # Зависимости
+│   └── SYSTEM_DOCUMENTATION.md
+├── *_visualization_results/ # Результаты визуализации
+│   ├── additional_visualization_results/
+│   ├── enhanced_visualization_results/
+│   ├── final_visualization_results/
+│   ├── real_data_visualization_results/
+│   └── spsa_visualization_results/
+├── main.py              # Главный исполняемый файл
+├── run_complete_real_llm_analysis.py  # Полный анализ с реальными LLM
+├── run_enhanced_comparison.py         # Расширенное сравнение
+├── run_full_comparison.py            # Полное сравнение
+└── run_real_llm_test.py              # Тест реальных LLM
 ```
 
 ## 🚀 Быстрый старт
@@ -135,7 +174,7 @@ python tests/test_real_llm_pipeline.py
 
 ## ⚙️ Конфигурация
 
-Основные параметры системы находятся в `configs/config.py`:
+Основные параметры системы находятся в `src/config/config.py`:
 
 ```python
 # LVP параметры
@@ -221,6 +260,8 @@ from src.agents.executor import Executor
 from src.agents.real_llm_executor import RealLLMExecutor
 from src.models.models import predict_load, predict_waiting_time
 from src.llm_providers.provider_manager import ProviderManager
+from src.config.config import *
+from src.comparison.comparison import ComparisonAnalyzer
 ```
 
 ### Создание задачи
@@ -270,10 +311,30 @@ result = provider_manager.execute_task("openai", "gpt-3.5-turbo",
 
 ## 🌟 Основные скрипты
 
+### Главные скрипты:
+- `main.py` - Главный скрипт системы
 - `run_complete_real_llm_analysis.py` - Полный анализ с реальными LLM
 - `run_enhanced_comparison.py` - Расширенное сравнение алгоритмов
-- `model_performance_evaluator.py` - Оценка производительности моделей
+- `run_full_comparison.py` - Полное сравнение
+- `run_real_llm_test.py` - Тест реальных LLM
+
+### Скрипты анализа (`scripts/analysis/`):
+- `analysis_summary.py` - Общий анализ результатов
+- `analyze_agents.py` - Анализ агентов
+- `analyze_enhanced_results.py` - Анализ расширенных результатов
+- `analyze_executors.py` - Анализ исполнителей
 - `performance_data_updater.py` - Обновление данных производительности
+
+### Бенчмарки (`scripts/benchmarks/`):
+- `model_performance_evaluator.py` - Оценка производительности моделей
+- `model_benchmark_report.py` - Отчет по бенчмаркам
+- `updated_model_capabilities.py` - Обновленные возможности моделей
+
+### Визуализация (`scripts/visualization/`):
+- `create_real_data_visualization.py` - Создание визуализации реальных данных
+- `create_synthetic_visualizations.py` - Создание синтетических визуализаций
+- `run_spsa_visualization.py` - Визуализация SPSA
+- `visualize_real_llm_data.py` - Визуализация данных реальных LLM
 
 ## 👥 Авторы
 
