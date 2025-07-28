@@ -1,6 +1,3 @@
-"""
-Провайдер OpenAI с поддержкой бесплатных альтернатив
-"""
 import asyncio
 import time
 import requests

@@ -1,0 +1,108 @@
+{
+  "updated_models": [
+    "GPT-4",
+    "Claude-3.5-Sonnet",
+    "GPT-3.5-Turbo"
+  ],
+  "model_scores": {
+    "GPT-4": {
+      "math": 0.568,
+      "creative": 0.853,
+      "code": 0.5,
+      "text": 0.6176666666666667,
+      "analysis": 0.4766666666666667,
+      "explanation": 0.535,
+      "planning": 0.618,
+      "research": 0.5,
+      "optimization": 0.6173333333333333
+    },
+    "Claude-3.5-Sonnet": {
+      "text": 0.853,
+      "explanation": 0.605,
+      "optimization": 0.852,
+      "math": 0.5226666666666666,
+      "code": 0.5,
+      "analysis": 0.4688888888888889,
+      "creative": 0.6176666666666667,
+      "planning": 0.6573333333333333,
+      "research": 0.5
+    },
+    "GPT-3.5-Turbo": {
+      "analysis": 0.43,
+      "planning": 0.854,
+      "math": 0.5302222222222222,
+      "code": 0.5,
+      "text": 0.6568888888888889,
+      "creative": 0.6568888888888889,
+      "explanation": 0.5466666666666666,
+      "research": 0.5,
+      "optimization": 0.6564444444444444
+    }
+  },
+  "aggregated_metrics": {
+    "real_executor_0": {
+      "math": {
+        "success_rate": 1.0,
+        "avg_duration": 1.6875434999999999,
+        "avg_tokens": 18,
+        "avg_cost": 0.018000000000000002,
+        "quality_score": 0.2541,
+        "response_completeness": 0.41500000000000004
+      },
+      "creative": {
+        "success_rate": 1.0,
+        "avg_duration": 0.696381,
+        "avg_tokens": 511,
+        "avg_cost": 0.511,
+        "quality_score": 0.6499999999999999,
+        "response_completeness": 1.0
+      }
+    },
+    "real_executor_1": {
+      "text": {
+        "success_rate": 1.0,
+        "avg_duration": 0.696637,
+        "avg_tokens": 279,
+        "avg_cost": 0.279,
+        "quality_score": 0.6499999999999999,
+        "response_completeness": 1.0
+      },
+      "explanation": {
+        "success_rate": 1.0,
+        "avg_duration": 1.426241,
+        "avg_tokens": 12,
+        "avg_cost": 0.012,
+        "quality_score": 0.38,
+        "response_completeness": 0.33499999999999996
+      },
+      "optimization": {
+        "success_rate": 1.0,
+        "avg_duration": 0.796425,
+        "avg_tokens": 489,
+        "avg_cost": 0.489,
+        "quality_score": 0.6499999999999999,
+        "response_completeness": 1.0
+      }
+    },
+    "real_executor_2": {
+      "analysis": {
+        "success_rate": 1.0,
+        "avg_duration": 1.047688,
+        "avg_tokens": 11,
+        "avg_cost": 0.011,
+        "quality_score": 0.0282,
+        "response_completeness": 0.14500000000000002
+      },
+      "planning": {
+        "success_rate": 1.0,
+        "avg_duration": 0.629391,
+        "avg_tokens": 245,
+        "avg_cost": 0.245,
+        "quality_score": 0.6499999999999999,
+        "response_completeness": 1.0
+      }
+    }
+  },
+  "total_tasks_analyzed": 8,
+  "update_timestamp": "2025-01-27"
+}

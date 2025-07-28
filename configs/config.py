@@ -53,8 +53,8 @@ BROKER_PARAMS = {
 
 # Общие системные параметры
 SYSTEM_PARAMS = {
-    'num_brokers': 3,          # количество брокеров
-    'num_executors': 5,        # количество исполнителей
+    'num_brokers': 6,          # количество брокеров
+    'num_executors': 6,        # количество исполнителей
     'simulation_steps': 100,   # шагов симуляции
     'log_level': 'INFO',       # уровень логирования
 }

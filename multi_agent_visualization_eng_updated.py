@@ -1,18 +1,27 @@
+#!/usr/bin/env python3
+"""
+Enhanced Multi-Agent System Visualization - English Version
+Creates all required visualizations with professional English labels
+Updates the assets/images/ directory with English versions
+"""
+
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 import pandas as pd
 from datetime import datetime, timedelta
 import warnings
+import os
+from pathlib import Path
+
 warnings.filterwarnings('ignore')
 
-# Set style
+# Style configuration
 plt.style.use('seaborn-v0_8')
 sns.set_palette("husl")
-
-# Set English font
 plt.rcParams['font.family'] = 'Arial'
 plt.rcParams['font.size'] = 10
+plt.rcParams['axes.unicode_minus'] = False
 
 class MultiAgentVisualizerEnglish:
     """Comprehensive visualization system for multi-agent system (English version)"""
@@ -20,15 +29,18 @@ class MultiAgentVisualizerEnglish:
     def __init__(self, data_source=None):
         self.data_source = data_source
         self.colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b']
-        self.output_dir = 'new_graph_eng/'
+        
+        # Update output directory to assets/images
+        self.output_dir = 'assets/images'
+        os.makedirs(self.output_dir, exist_ok=True)
         
     def generate_sample_data(self):
         """Generate sample data for demonstration"""
         np.random.seed(42)
         
-        # Agent models
+        # Agent models (Real LLM models)
         models = ['GPT-4', 'Claude-3.5', 'Gemini-1.5', 'LLaMA-3', 'Mistral-7B']
-        task_types = ['Data Analysis', 'Coding', 'Translation', 'Summarization', 'Q&A', 'Creative']
+        task_types = ['Data Analysis', 'Programming', 'Translation', 'Summarization', 'Q&A', 'Creative Writing']
         priorities = ['High', 'Medium', 'Low']
         
         # 1. Performance heatmap data
@@ -37,7 +49,7 @@ class MultiAgentVisualizerEnglish:
         performance_data[0] *= 0.95  # GPT-4 good at everything
         performance_data[1] *= 0.90  # Claude good at analysis
         performance_data[2] *= 0.85  # Gemini average
-        performance_data[3, 1] *= 1.2  # LLaMA good at coding
+        performance_data[3, 1] *= 1.2  # LLaMA good at programming
         performance_data[4] *= 0.75   # Mistral weaker
         
         # 2. Time prediction vs actual data
@@ -106,14 +118,22 @@ class MultiAgentVisualizerEnglish:
             cbar_kws={'label': 'Performance Score (0-1)'}
         )
         
-        plt.title('Performance Heatmap: Agent Performance by Task Types', 
+        plt.title('Performance Heatmap: LLM Agent Performance by Task Types', 
                  fontsize=16, fontweight='bold', pad=20)
-        plt.xlabel('Task Types', fontsize=12)
-        plt.ylabel('Agent Models', fontsize=12)
+        plt.xlabel('Task Types', fontsize=12, fontweight='bold')
+        plt.ylabel('LLM Agent Models', fontsize=12, fontweight='bold')
         plt.xticks(rotation=45, ha='right')
         plt.yticks(rotation=0)
-        plt.tight_layout()
         
+        # Add explanation
+        plt.figtext(0.02, 0.02, 
+                   'Green = Better Performance | Red = Lower Performance\n'
+                   'Based on synthetic multi-agent system performance data',
+                   fontsize=9, bbox=dict(boxstyle="round,pad=0.3", facecolor='lightblue', alpha=0.7))
+        
+        plt.tight_layout()
+        plt.savefig(f'{self.output_dir}/performance_heatmap.png', dpi=300, bbox_inches='tight')
+        plt.close()
         return plt.gcf()
     
     def create_time_prediction_plot(self, data):
@@ -146,7 +166,13 @@ class MultiAgentVisualizerEnglish:
         ax2.legend()
         ax2.grid(True, alpha=0.3)
         
+        # Add main title
+        fig.suptitle('Time Prediction Analysis: Accuracy and Error Distribution', 
+                    fontsize=16, fontweight='bold', y=0.98)
+        
         plt.tight_layout()
+        plt.savefig(f'{self.output_dir}/time_prediction.png', dpi=300, bbox_inches='tight')
+        plt.close()
         return fig
     
     def create_task_distribution_plot(self, data):
@@ -164,14 +190,14 @@ class MultiAgentVisualizerEnglish:
                     for x in data['task_distribution']]
         )
         
-        ax1.set_title('Task Distribution Among Agents (%)', fontsize=14, fontweight='bold')
+        ax1.set_title('Task Distribution Among LLM Agents (%)', fontsize=14, fontweight='bold')
         
         # Bar chart
         bars = ax2.bar(data['models'], data['task_distribution'], 
                       color=self.colors[:len(data['models'])], alpha=0.8)
-        ax2.set_xlabel('Agent Models', fontsize=12)
-        ax2.set_ylabel('Task Percentage', fontsize=12)
-        ax2.set_title('Agent Workload', fontsize=14, fontweight='bold')
+        ax2.set_xlabel('LLM Agent Models', fontsize=12)
+        ax2.set_ylabel('Task Percentage (%)', fontsize=12)
+        ax2.set_title('Agent Workload Distribution', fontsize=14, fontweight='bold')
         ax2.tick_params(axis='x', rotation=45)
         
         # Add values on bars
@@ -184,7 +210,14 @@ class MultiAgentVisualizerEnglish:
                         ha='center', va='bottom')
         
         ax2.grid(True, alpha=0.3)
+        
+        # Add main title
+        fig.suptitle('Task Distribution Analysis: Load Balancing Among LLM Agents', 
+                    fontsize=16, fontweight='bold', y=0.98)
+        
         plt.tight_layout()
+        plt.savefig(f'{self.output_dir}/task_distribution.png', dpi=300, bbox_inches='tight')
+        plt.close()
         return fig
     
     def create_success_rate_plot(self, data):
@@ -194,9 +227,9 @@ class MultiAgentVisualizerEnglish:
         bars = ax.bar(data['task_types'], data['success_rates'], 
                      color=self.colors[:len(data['task_types'])], alpha=0.8)
         
-        ax.set_xlabel('Task Types', fontsize=12)
-        ax.set_ylabel('Success Rate (%)', fontsize=12)
-        ax.set_title('Success Rate by Task Types', fontsize=16, fontweight='bold')
+        ax.set_xlabel('Task Types', fontsize=12, fontweight='bold')
+        ax.set_ylabel('Success Rate (%)', fontsize=12, fontweight='bold')
+        ax.set_title('Success Rate by Task Types', fontsize=16, fontweight='bold', pad=20)
         ax.set_ylim(0, 100)
         
         # Add values on bars
@@ -217,7 +250,16 @@ class MultiAgentVisualizerEnglish:
         ax.legend()
         ax.grid(True, alpha=0.3, axis='y')
         plt.xticks(rotation=45, ha='right')
+        
+        # Add explanation
+        plt.figtext(0.02, 0.02, 
+                   f'Overall system success rate: {mean_success:.1f}%\n'
+                   'Based on synthetic task execution results',
+                   fontsize=9, bbox=dict(boxstyle="round,pad=0.3", facecolor='lightgreen', alpha=0.7))
+        
         plt.tight_layout()
+        plt.savefig(f'{self.output_dir}/success_rates.png', dpi=300, bbox_inches='tight')
+        plt.close()
         return fig
     
     def create_broker_error_dynamics(self, data):
@@ -227,7 +269,7 @@ class MultiAgentVisualizerEnglish:
         # Main error line
         ax.plot(data['dates'], data['broker_errors'], 
                marker='o', linewidth=2, markersize=4, 
-               color=self.colors[0], label='Broker Error')
+               color=self.colors[0], label='Broker Prediction Error')
         
         # Moving average
         window = 7
@@ -235,24 +277,34 @@ class MultiAgentVisualizerEnglish:
             moving_avg = pd.Series(data['broker_errors']).rolling(window=window).mean()
             ax.plot(data['dates'], moving_avg, 
                    linewidth=3, color=self.colors[1], alpha=0.8,
-                   label=f'Moving Average ({window} days)')
+                   label=f'{window}-day Moving Average')
         
         # Trend line
         z = np.polyfit(range(len(data['dates'])), data['broker_errors'], 1)
         p = np.poly1d(z)
         ax.plot(data['dates'], p(range(len(data['dates']))), 
-               "--", color='red', alpha=0.7, linewidth=2, label='Trend')
+               "--", color='red', alpha=0.7, linewidth=2, label='Trend Line')
         
-        ax.set_xlabel('Date', fontsize=12)
-        ax.set_ylabel('Average Prediction Error', fontsize=12)
-        ax.set_title('Broker Prediction Error Dynamics', fontsize=16, fontweight='bold')
+        ax.set_xlabel('Date', fontsize=12, fontweight='bold')
+        ax.set_ylabel('Average Prediction Error', fontsize=12, fontweight='bold')
+        ax.set_title('Broker Prediction Error Dynamics Over Time', fontsize=16, fontweight='bold', pad=20)
         ax.legend()
         ax.grid(True, alpha=0.3)
         
         # Format dates
         ax.tick_params(axis='x', rotation=45)
         
+        # Add trend analysis
+        trend_slope = z[0]
+        trend_direction = "Improving" if trend_slope < 0 else "Worsening"
+        plt.figtext(0.02, 0.02, 
+                   f'Trend: {trend_direction} (slope: {trend_slope:.4f})\n'
+                   f'Average error: {np.mean(data["broker_errors"]):.3f}',
+                   fontsize=9, bbox=dict(boxstyle="round,pad=0.3", facecolor='lightyellow', alpha=0.7))
+        
         plt.tight_layout()
+        plt.savefig(f'{self.output_dir}/broker_errors.png', dpi=300, bbox_inches='tight')
+        plt.close()
         return fig
     
     def create_priority_execution_plot(self, data):
@@ -260,7 +312,7 @@ class MultiAgentVisualizerEnglish:
         fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(16, 12))
         
         priorities = ['high', 'medium', 'low']
-        priority_labels = ['High', 'Medium', 'Low']
+        priority_labels = ['High Priority', 'Medium Priority', 'Low Priority']
         priority_colors = [self.colors[0], self.colors[1], self.colors[2]]
         
         # Scatter plots for each priority
@@ -272,17 +324,19 @@ class MultiAgentVisualizerEnglish:
             
             # Perfect prediction line
             max_time = max(max(pred), max(real))
-            ax.plot([0, max_time], [0, max_time], 'r--', alpha=0.7, linewidth=2)
+            ax.plot([0, max_time], [0, max_time], 'r--', alpha=0.7, linewidth=2, 
+                   label='Perfect Prediction')
             
             ax.set_xlabel('Predicted Time (hours)', fontsize=10)
             ax.set_ylabel('Actual Time (hours)', fontsize=10)
-            ax.set_title(f'Priority: {label}', fontsize=12, fontweight='bold')
+            ax.set_title(f'{label} Tasks', fontsize=12, fontweight='bold')
             ax.grid(True, alpha=0.3)
+            ax.legend()
             
             # Add correlation
             correlation = np.corrcoef(pred, real)[0, 1]
             ax.text(0.05, 0.95, f'R² = {correlation**2:.3f}', 
-                   transform=ax.transAxes, bbox=dict(boxstyle="round", facecolor='wheat', alpha=0.5))
+                   transform=ax.transAxes, bbox=dict(boxstyle="round", facecolor='wheat', alpha=0.8))
         
         # Comparative boxplot
         all_pred_times = []
@@ -293,7 +347,7 @@ class MultiAgentVisualizerEnglish:
             pred, real = data['priority_data'][priority]
             all_pred_times.extend(pred)
             all_real_times.extend(real)
-            labels.extend([f'{label} (Pred.)'] * len(pred))
+            labels.extend([f'{label} (Predicted)'] * len(pred))
             labels.extend([f'{label} (Actual)'] * len(real))
         
         times_data = all_pred_times + all_real_times
@@ -305,40 +359,73 @@ class MultiAgentVisualizerEnglish:
         })
         
         # Boxplot
-        df_pivot = df.pivot_table(values='Time', columns='Category', aggfunc=list)
-        data_for_box = [df_pivot.iloc[0][col] for col in df_pivot.columns]
-        labels_for_box = list(df_pivot.columns)
+        unique_categories = [f'{label} (Predicted)' for label in priority_labels] + \
+                          [f'{label} (Actual)' for label in priority_labels]
         
-        box_plot = ax4.boxplot(data_for_box, labels=labels_for_box, patch_artist=True)
+        data_for_box = []
+        for category in unique_categories:
+            category_data = df[df['Category'] == category]['Time'].values
+            if len(category_data) > 0:
+                data_for_box.append(category_data)
         
-        # Color boxes
-        colors_extended = priority_colors * 2
-        for patch, color in zip(box_plot['boxes'], colors_extended):
-            patch.set_facecolor(color)
-            patch.set_alpha(0.7)
+        if data_for_box:
+            box_plot = ax4.boxplot(data_for_box, labels=unique_categories, patch_artist=True)
+            
+            # Color the boxes
+            colors_extended = priority_colors * 2
+            for patch, color in zip(box_plot['boxes'], colors_extended):
+                patch.set_facecolor(color)
+                patch.set_alpha(0.7)
         
-        ax4.set_title('Execution Time Comparison by Priorities', 
+        ax4.set_title('Execution Time Comparison by Priority', 
                      fontsize=12, fontweight='bold')
         ax4.set_ylabel('Execution Time (hours)', fontsize=10)
         ax4.tick_params(axis='x', rotation=45)
         ax4.grid(True, alpha=0.3)
         
+        # Main title
+        fig.suptitle('Priority-Based Execution Analysis: Task Performance by Priority Level', 
+                    fontsize=16, fontweight='bold', y=0.95)
+        
         plt.tight_layout()
+        plt.savefig(f'{self.output_dir}/priority_execution.png', dpi=300, bbox_inches='tight')
+        plt.close()
         return fig
     
     def create_comprehensive_dashboard(self):
-        """Create comprehensive dashboard with all plots"""
+        """Create comprehensive dashboard with all graphs"""
+        print("\n" + "="*80)
+        print("🚀 CREATING COMPREHENSIVE MULTI-AGENT VISUALIZATION DASHBOARD")
+        print("="*80)
+        print("📊 Language: English")
+        print("📁 Output Directory:", self.output_dir)
+        print("🎨 High Quality: 300 DPI")
+        print("="*80)
+        
         data = self.generate_sample_data()
         
-        # Create all plots
+        # Create all graphs
+        print("\n📊 Creating visualizations...")
+        
+        print("   1. 🎯 Performance Heatmap...")
         fig1 = self.create_performance_heatmap(data)
+        
+        print("   2. ⏱️ Time Prediction Analysis...")
         fig2 = self.create_time_prediction_plot(data)
+        
+        print("   3. 📈 Task Distribution...")
         fig3 = self.create_task_distribution_plot(data)
+        
+        print("   4. ✅ Success Rates...")
         fig4 = self.create_success_rate_plot(data)
+        
+        print("   5. 📉 Broker Error Dynamics...")
         fig5 = self.create_broker_error_dynamics(data)
+        
+        print("   6. 🚀 Priority Execution Analysis...")
         fig6 = self.create_priority_execution_plot(data)
         
-        # Save all plots
+        # Save figures info
         figures = {
             'performance_heatmap': fig1,
             'time_prediction': fig2,
@@ -348,26 +435,35 @@ class MultiAgentVisualizerEnglish:
             'priority_execution': fig6
         }
         
-        for name, fig in figures.items():
-            fig.savefig(f'{self.output_dir}{name}.png', dpi=300, bbox_inches='tight')
-            print(f"Saved plot: {self.output_dir}{name}.png")
+        print("\n" + "="*80)
+        print("✅ VISUALIZATION DASHBOARD COMPLETED!")
+        print("="*80)
+        print(f"📁 All graphs saved to: {self.output_dir}/")
+        print("📊 Generated Files:")
+        print("   • performance_heatmap.png - LLM Agent Performance Heatmap")
+        print("   • time_prediction.png - Time Prediction Analysis")
+        print("   • task_distribution.png - Task Distribution Among Agents")
+        print("   • success_rates.png - Success Rates by Task Types")
+        print("   • broker_errors.png - Broker Error Dynamics")
+        print("   • priority_execution.png - Priority-Based Execution Analysis")
+        print("="*80)
         
         return figures
 
-if __name__ == "__main__":
-    # Create visualizer and generate dashboard
+def main():
+    """Main function to create all visualizations"""
+    print("🚀 MULTI-AGENT SYSTEM VISUALIZATION (ENGLISH VERSION)")
+    print("=" * 60)
+    
+    # Create visualizer
     visualizer = MultiAgentVisualizerEnglish()
     
-    print("Generating multi-agent system visualization (English version)...")
+    # Generate comprehensive dashboard
     figures = visualizer.create_comprehensive_dashboard()
     
-    print("\nGenerated the following plots:")
-    print("1. performance_heatmap.png - Agent performance heatmap")
-    print("2. time_prediction.png - Predicted vs actual execution time")
-    print("3. task_distribution.png - Task distribution among agents")
-    print("4. success_rates.png - Success rates by task types")
-    print("5. broker_errors.png - Broker prediction error dynamics")
-    print("6. priority_execution.png - Execution time by priorities")
-    
-    # Show all plots
-    plt.show()
+    print("\n🎉 All English visualizations have been created successfully!")
+    print(f"📁 Check the '{visualizer.output_dir}' directory for all updated graphs.")
+    print("🌍 All labels and titles are now in English!")
+
+if __name__ == "__main__":
+    main()

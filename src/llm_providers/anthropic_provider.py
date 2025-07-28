@@ -1,6 +1,3 @@
-"""
-Провайдер Anthropic для моделей Claude
-"""
 import asyncio
 import time
 import requests
@@ -103,7 +100,7 @@ class AnthropicProvider(BaseLLMProvider):
             return False
 
 
-# Конфигурации для моделей Claude
+# Конфигурации для моделей
 ANTHROPIC_MODELS = {
     'claude-3-haiku': {
         'model_name': 'claude-3-haiku-20240307',

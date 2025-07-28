@@ -18,7 +18,8 @@ class Broker:
         self.graph_service = graph_service
         self.load = 0
         self.history = []
-        self.theta = [random.random() for _ in range(5)]  # Инициализируем параметры θ
+        self.executor_pool_size = 6  # Set the number of executors, including 5
+        self.theta = [random.random() for _ in range(self.executor_pool_size)]  # Initialize parameters θ for each executor
 
     def receive_prompt(self, prompt_or_batch, all_brokers=None):
         """
@@ -129,7 +130,11 @@ class Broker:
 
     def select_executor(self, prompt):
         # Простая логика выбора исполнителя
-        return random.choice(range(5))
+        available_executors = list(range(self.executor_pool_size))  # Executors 0-5 based on pool size
+        selected_executor = random.choice(available_executors)
+        
+        
+        return selected_executor
 
     def _loss_function_proc(self, theta):
         """
