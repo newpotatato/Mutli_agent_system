@@ -345,7 +345,7 @@ class EnhancedBrokerComparisonSystem:
                     'wait_prediction': result.get('wait_prediction', 0),
                     'cost': result.get('cost', 0),
                     'success': result.get('success', True),
-                    'processing_time': batch_time / len(batch),
+                    'processing_time': result.get('execution_time', batch_time / len(batch)),
                     'system_type': 'RoundRobin',
                     'priority': task['priority'],
                     'complexity': task['complexity'],
@@ -358,7 +358,9 @@ class EnhancedBrokerComparisonSystem:
                     'memory_usage': random.uniform(0.3, 0.95),
                     'cpu_usage': random.uniform(0.2, 0.85),
                     'network_usage': random.uniform(0.0, 0.5),
-                    'broker_load_at_assignment': selected_broker.load
+                    'broker_load_at_assignment': selected_broker.load,
+                    'p_real': result.get('p_real', 0.0),
+                    'execution_time': result.get('execution_time', 0.0)
                 }
                 results.append(record)
             

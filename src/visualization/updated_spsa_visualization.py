@@ -38,17 +38,7 @@ class SPSAVisualizationSystem:
         self.results = None
         self.data_source = None
         
-        # Try to load data
-        try:
-            with open(results_file, 'r', encoding='utf-8') as f:
-                self.results = json.load(f)
-                self.data_source = 'real'
-                print(f"✓ Loaded real data from {results_file}")
-        except FileNotFoundError:
-            print(f"⚠ File not found. Generating synthetic data...")
-            self.results = self._generate_synthetic_data()
-            self.data_source = 'synthetic'
-        
+        # Initialize basic properties first
         self.colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', 
                       '#8c564b', '#17becf', '#bcbd22', '#e377c2', '#7f7f7f']
         
@@ -59,6 +49,17 @@ class SPSAVisualizationSystem:
         # Create output directory
         self.output_dir = 'spsa_visualization_results'
         os.makedirs(self.output_dir, exist_ok=True)
+        
+        # Try to load data
+        try:
+            with open(results_file, 'r', encoding='utf-8') as f:
+                self.results = json.load(f)
+                self.data_source = 'real'
+                print(f"✓ Loaded real data from {results_file}")
+        except FileNotFoundError:
+            print(f"⚠ File not found. Generating synthetic data...")
+            self.results = self._generate_synthetic_data()
+            self.data_source = 'synthetic'
         
         # Analyze data structure
         self._analyze_data()
@@ -131,7 +132,9 @@ class SPSAVisualizationSystem:
             rr_record = spsa_record.copy()
             rr_record['system_type'] = 'RoundRobin'
             rr_record['actual_execution_time'] = base_time + np.random.normal(0, 0.8)  # More variable
-            rr_record['prediction_error'] = abs(np.random.normal(0, 0.3))  # Higher error
+            rr_record['prediction_error'] = 0  # Round Robin doesn't make predictions
+            rr_record['wait_prediction'] = 0  # Round Robin doesn't predict wait time
+            rr_record['load_prediction'] = 0  # Round Robin doesn't predict load
             rr_record['success'] = np.random.random() > 0.15  # 85% success rate
             rr_results.append(rr_record)
         
@@ -364,14 +367,22 @@ class SPSAVisualizationSystem:
         
         # Calculate prediction deviation from 1.0 for both systems
         def calculate_deviations(data, system_name):
-            if 'actual_execution_time' in data.columns and 'wait_prediction' in data.columns:
-                # Use real timing data
-                data['prediction_ratio'] = data['actual_execution_time'] / data['wait_prediction']
-                data['deviation_from_unity'] = abs(data['prediction_ratio'] - 1.0)
+            if system_name == 'Round Robin':
+                # Round Robin doesn't make predictions, so no deviation to calculate
+                data['deviation_from_unity'] = np.nan  # No prediction = no deviation
+                data['system'] = system_name
+                return data
+            elif 'actual_execution_time' in data.columns and 'wait_prediction' in data.columns:
+                # Use real timing data for SPSA
+                # Avoid division by zero
+                valid_predictions = data['wait_prediction'] > 0
+                data.loc[valid_predictions, 'prediction_ratio'] = data.loc[valid_predictions, 'actual_execution_time'] / data.loc[valid_predictions, 'wait_prediction']
+                data.loc[valid_predictions, 'deviation_from_unity'] = abs(data.loc[valid_predictions, 'prediction_ratio'] - 1.0)
+                data.loc[~valid_predictions, 'deviation_from_unity'] = np.nan
             else:
-                # Generate realistic deviations
-                np.random.seed(42 if system_name == 'SPSA' else 43)
-                data['deviation_from_unity'] = abs(np.random.normal(0, 0.25 if system_name == 'SPSA' else 0.35, len(data)))
+                # Generate realistic deviations for SPSA only
+                np.random.seed(42)
+                data['deviation_from_unity'] = abs(np.random.normal(0, 0.25, len(data)))
             data['system'] = system_name
             return data
         
@@ -420,12 +431,6 @@ class SPSAVisualizationSystem:
         ax2.grid(True, alpha=0.3)
         ax2.tick_params(axis='x', rotation=45)
         
-        # Add reference line at perfect prediction (0 deviation)
-        ax1.axhline(y=0, color='red', linestyle='--', alpha=0.7, label='Perfect Prediction')
-        ax2.axhline(y=0, color='red', linestyle='--', alpha=0.7, label='Perfect Prediction')
-        
-        ax1.legend()
-        ax2.legend()
         
         plt.tight_layout()
         plt.savefig(f'{self.output_dir}/2_prediction_deviation_boxplot.png', dpi=300, bbox_inches='tight')
@@ -668,12 +673,6 @@ class SPSAVisualizationSystem:
         plt.legend()
         plt.grid(True, alpha=0.3)
         
-        # Add convergence annotations
-        plt.annotate('SPSA Learning\nConvergence', 
-                    xy=(num_epochs*0.8, spsa_errors[-5]), 
-                    xytext=(num_epochs*0.6, 0.6),
-                    arrowprops=dict(arrowstyle='->', color=self.colors[0]),
-                    fontsize=10, ha='center')
         
         plt.tight_layout()
         plt.savefig(f'{self.output_dir}/5_epoch_learning_analysis.png', dpi=300, bbox_inches='tight')

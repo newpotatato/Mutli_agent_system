@@ -206,10 +206,12 @@ class BrokerComparisonSystem:
                     'wait_prediction': result.get('wait_prediction', 0),
                     'cost': result.get('cost', 0),
                     'success': result.get('success', True),
-                    'processing_time': batch_time / len(batch),
+                    'processing_time': result.get('execution_time', batch_time / len(batch)),
                     'system_type': 'RoundRobin',
                     'priority': task['priority'],
-                    'complexity': task['complexity']
+                    'complexity': task['complexity'],
+                    'p_real': result.get('p_real', 0.0),
+                    'execution_time': result.get('execution_time', 0.0)
                 }
                 results.append(record)
             
@@ -240,6 +242,8 @@ class BrokerComparisonSystem:
             avg_cost = np.mean([r['cost'] for r in data])
             avg_load_prediction = np.mean([r['load_prediction'] for r in data])
             avg_wait_prediction = np.mean([r['wait_prediction'] for r in data])
+            avg_p_real = np.mean([r.get('p_real', 0) for r in data])
+            avg_execution_time = np.mean([r.get('execution_time', 0) for r in data])
             
             # Распределение по брокерам
             broker_distribution = {}
@@ -271,6 +275,8 @@ class BrokerComparisonSystem:
                 'avg_cost': avg_cost,
                 'avg_load_prediction': avg_load_prediction,
                 'avg_wait_prediction': avg_wait_prediction,
+                'avg_p_real': avg_p_real,
+                'avg_execution_time': avg_execution_time,
                 'broker_distribution': broker_distribution,
                 'task_type_distribution': task_type_distribution,
                 'success_by_type': success_by_type

@@ -24,7 +24,7 @@ class RealLLMVisualization:
     Класс для создания визуализаций на основе реальных данных LLM
     """
     
-    def __init__(self, results_file: str = 'test_results/real_llm_test_results.json'):
+    def __init__(self, results_file: str = '../test_results/real_llm_test_results.json'):
         """
         Инициализация с загрузкой реальных результатов LLM
         

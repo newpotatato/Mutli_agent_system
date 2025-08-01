@@ -7,6 +7,7 @@ import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 from configs.config import EXECUTOR_PARAMS
 import random
+import time
 import numpy as np
 
 
@@ -44,6 +45,7 @@ class RoundRobinBroker:
         print(f"Round Robin Брокер {self.id} обрабатывает пакет из {len(prompts)} задач")
         
         for prompt in prompts:
+            start_time = time.time()
             # Определяем p̂, ŵ для каждого промпта
             p_hat = predict_load(prompt)
             w_hat = predict_waiting_time(prompt)
@@ -66,8 +68,13 @@ class RoundRobinBroker:
             executor_id = self.select_executor_round_robin()
             print(f"  └─ Задача {prompt['id']} → исполнитель {executor_id} (Round Robin)")
 
-            # Сохраняем историю 
-            self.history.append((prompt, p_hat, w_hat, p_real))
+            # Имитируем задержку выполнения
+            time.sleep(p_real * 0.1)  # Имитация времени выполнения
+            end_time = time.time()
+            execution_time = end_time - start_time
+            
+            # Сохраняем историю с временем выполнения
+            self.history.append((prompt, p_hat, w_hat, p_real, execution_time))
             
             # Добавляем результат для этого промпта
             results.append({
@@ -75,7 +82,9 @@ class RoundRobinBroker:
                 "load_prediction": p_hat,
                 "wait_prediction": w_hat,
                 "cost": cost,
-                "success": success
+                "success": success,
+                "p_real": p_real,
+                "execution_time": execution_time
             })
         
         print(f"Round Robin Брокер {self.id} завершил обработку пакета. Общая нагрузка: {batch_load_total:.2f}")
@@ -103,6 +112,7 @@ class RoundRobinBroker:
         avg_load_prediction = np.mean([h[1] for h in recent_history])
         avg_wait_prediction = np.mean([h[2] for h in recent_history])
         avg_real_load = np.mean([h[3] for h in recent_history])
+        avg_execution_time = np.mean([h[4] for h in recent_history]) if len(recent_history[0]) > 4 else 0.0
         
         # Простая метрика ошибки
         load_error = abs(avg_load_prediction - avg_real_load)
@@ -115,7 +125,8 @@ class RoundRobinBroker:
             'f_minus': 0.0,
             'avg_load_prediction': float(avg_load_prediction),
             'avg_wait_prediction': float(avg_wait_prediction),
-            'avg_real_load': float(avg_real_load)
+            'avg_real_load': float(avg_real_load),
+            'avg_execution_time': float(avg_execution_time)
         }
 
     def reset_load(self):
@@ -129,16 +140,23 @@ class RoundRobinBroker:
                 'total_tasks': 0,
                 'avg_load_prediction': 0,
                 'avg_wait_prediction': 0,
-                'load_prediction_variance': 0
+                'load_prediction_variance': 0,
+                'avg_real_load': 0,
+                'avg_execution_time': 0
             }
             
         load_predictions = [h[1] for h in self.history]
         wait_predictions = [h[2] for h in self.history]
+        real_loads = [h[3] for h in self.history]
+        execution_times = [h[4] for h in self.history if len(h) > 4]
         
         return {
             'total_tasks': len(self.history),
             'avg_load_prediction': np.mean(load_predictions),
             'avg_wait_prediction': np.mean(wait_predictions),
             'load_prediction_variance': np.var(load_predictions),
-            'current_load': self.load
+            'current_load': self.load,
+            'avg_real_load': np.mean(real_loads),
+            'real_load_variance': np.var(real_loads),
+            'avg_execution_time': np.mean(execution_times) if execution_times else 0.0
         }
